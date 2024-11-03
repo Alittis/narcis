@@ -42,7 +42,7 @@ RUN git clone https://github.com/MapServer/MapServer.git /mapserver-src \
     && cd /mapserver-src \
     && mkdir build \
     && cd build \
-    && /usr/local/bin/cmake .. -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 \
+    && /usr/local/bin/cmake .. -DWITH_PYTHON=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 -DCMAKE_C_STANDARD=99 \
     && make \
     && make install
 
