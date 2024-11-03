@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
 # Set Python 3.8 as the default Python version
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
 
+# Upgrade pip, setuptools, and wheel to the latest versions
+RUN python3.8 -m pip install --upgrade pip setuptools wheel
+
 # Install FastAPI, Uvicorn, and MapScript with explicit Python 3.8 pip
 RUN python3.8 -m pip install fastapi uvicorn mapscript
 
