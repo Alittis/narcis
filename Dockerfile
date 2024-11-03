@@ -8,14 +8,20 @@ ENV LANG=C.UTF-8
 # Switch to root to install dependencies and build tools
 USER root
 
-# Install dependencies for Python and building tools
+# Add a repository for GDAL 3.x and install dependencies
 RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    && add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
+    && apt-get update && apt-get install -y \
     python3.8 \
     python3.8-dev \
     python3-pip \
     git \
     build-essential \
     wget \
+    cmake \
+    gdal-bin \
+    libgdal-dev \
     libmapserver-dev \
     && rm -rf /var/lib/apt/lists/*
 
