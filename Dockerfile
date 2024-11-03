@@ -1,6 +1,10 @@
 # Use an official MapServer image
 FROM mapserver/mapserver:latest
 
+# Set UTF-8 locale environment variables
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 # Switch to root to install dependencies
 USER root
 
