@@ -1,4 +1,4 @@
-# Use an official MapServer image
+# Start with an official Python image that includes MapServer and Python 3.8 or higher
 FROM mapserver/mapserver:latest
 
 # Set UTF-8 locale environment variables
@@ -8,14 +8,18 @@ ENV LANG=C.UTF-8
 # Switch to root to install dependencies
 USER root
 
-# Install necessary packages and dependencies
+# Install Python 3.8 and dependencies
 RUN apt-get update && apt-get install -y \
+    python3.8 \
+    python3.8-dev \
     python3-pip \
-    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Set Python 3.8 as the default Python version
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+
 # Install FastAPI and Uvicorn
-RUN pip3 install fastapi uvicorn mapscript
+RUN pip install fastapi uvicorn mapscript
 
 # Copy your FastAPI app code into the container
 COPY app.py /app/app.py
